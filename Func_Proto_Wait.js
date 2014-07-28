@@ -40,9 +40,9 @@ if (!Function.prototype.wait) {
 			// Set up the configs
 			config.args = (config.args instanceof Array) ? config.args : [];
 			config.that = (config.that instanceof Object) ? config.that : self;
-			config.latency = (typeof config.latency == "number" && config.latency >= minLatency) ? Math.floor(Math.abs(config.latency)) : minLatency;
-			config.anywayTiming = (typeof config.anywayTiming == "number" && config.anywayTiming >= minTiming) ? Math.floor(Math.abs(config.anywayTiming)) : undefined;
-			config.stopTiming = (typeof config.stopTiming == "number" && config.stopTiming >= minTiming) ? Math.floor(Math.abs(config.stopTiming)) : undefined;
+			config.latency = (typeof config.latency == "number" && config.latency >= minLatency) ? Math.floor(config.latency) : minLatency;
+			config.anywayTiming = (typeof config.anywayTiming == "number" && config.anywayTiming >= minTiming) ? Math.floor(config.anywayTiming) : undefined;
+			config.stopTiming = (typeof config.stopTiming == "number" && config.stopTiming >= minTiming) ? Math.floor(config.stopTiming) : undefined;
 			if (!config._fallback) {
 				if (typeof config.anywayTiming != "number"
 					&& typeof config.stopTiming != "number"
