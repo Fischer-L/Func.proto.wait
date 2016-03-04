@@ -13,7 +13,7 @@ if (!Function.prototype.wait) {
 					 if sth else, keep waiting and checking the condition.
 			> [config] = the config obj, the settings include : {
 							> [args] = the args to pass in the waiting function
-							> [that] = Used as the this obj when calling the waiting function. If ommited, would be the funciton itself
+							> [that] = Used as the this obj when calling the waiting function. If ommited, would be undefined
 							> [latency] = the time between each checking; in ms; the min is 1.
 							> [anywayTiming] = the time(ms) after which run the waiting function anyway.
 							> [stopTiming] = the time(ms) after which stop waiting(the waiting function would not be run). If stopTiming equals to anywayTiming, would take anywayTiming first.
@@ -39,7 +39,7 @@ if (!Function.prototype.wait) {
 			
 			// Set up the configs
 			if (!(config.args instanceof Array)) config.args = [];
-			if (!(config.that instanceof Object)) config.that = self;
+			if (!(config.that instanceof Object)) config.that = undefined;
 			if (!(typeof config.latency == "number" && config.latency >= minLatency)) config.latency = minLatency;
 			if (!(typeof config.stopTiming == "number" && config.stopTiming >= minTiming)) config.stopTiming = undefined;
 			if (!(typeof config.anywayTiming == "number" && config.anywayTiming >= minTiming)) config.anywayTiming = undefined;
