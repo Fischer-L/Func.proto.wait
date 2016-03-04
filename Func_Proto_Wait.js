@@ -38,11 +38,11 @@ if (!Function.prototype.wait) {
 			self = arguments[2] || this;			
 			
 			// Set up the configs
-			config.args = (config.args instanceof Array) ? config.args : [];
-			config.that = (config.that instanceof Object) ? config.that : self;
-			config.latency = (typeof config.latency == "number" && config.latency >= minLatency) ? Math.floor(config.latency) : minLatency;
-			config.anywayTiming = (typeof config.anywayTiming == "number" && config.anywayTiming >= minTiming) ? Math.floor(config.anywayTiming) : undefined;
-			config.stopTiming = (typeof config.stopTiming == "number" && config.stopTiming >= minTiming) ? Math.floor(config.stopTiming) : undefined;
+			if (!(config.args instanceof Array)) config.args = [];
+			if (!(config.that instanceof Object)) config.that = self;
+			if (!(typeof config.latency == "number" && config.latency >= minLatency)) config.latency = minLatency;
+			if (!(typeof config.stopTiming == "number" && config.stopTiming >= minTiming)) config.stopTiming = undefined;
+			if (!(typeof config.anywayTiming == "number" && config.anywayTiming >= minTiming)) config.anywayTiming = undefined;
 			if (!config._fallback) {
 				if (typeof config.anywayTiming != "number"
 					&& typeof config.stopTiming != "number"
@@ -93,9 +93,7 @@ if (!Function.prototype.wait) {
 				}
 			}
 			
-			if (!action) {
-				action = cond();
-			}
+			if (!action) action = cond();
 			
 			switch (action) {
 				case "run": case "anyway":
