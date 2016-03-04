@@ -28,7 +28,8 @@ if (!Function.prototype.wait) {
 				self,
 				action,
 				minTiming = 1, // 1 ms
-				minLatency = 1; // 1 ms
+				minLatency = 1, // 1 ms
+				defaultLatency = 50; // 50 ms
 				
 			
 			if (!(config instanceof Object)) {
@@ -40,7 +41,7 @@ if (!Function.prototype.wait) {
 			// Set up the configs
 			if (!(config.args instanceof Array)) config.args = [];
 			if (!(config.that instanceof Object)) config.that = undefined;
-			if (!(typeof config.latency == "number" && config.latency >= minLatency)) config.latency = minLatency;
+			if (!(typeof config.latency == "number" && config.latency >= minLatency)) config.latency = defaultLatency;
 			if (!(typeof config.stopTiming == "number" && config.stopTiming >= minTiming)) config.stopTiming = undefined;
 			if (!(typeof config.anywayTiming == "number" && config.anywayTiming >= minTiming)) config.anywayTiming = undefined;
 			if (!config._fallback) {
